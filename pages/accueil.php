@@ -13,7 +13,7 @@
         <div class="row">
             <header class="col-12 ho">
                 <div>
-        <img src="../images/logo/kizerbo_logo-removebg-preview.png"" class="col-12 offset-6 logo">
+        <img src="../images/logo/kizerbo_logo-removebg-preview.png"" class="col-12 offset-6 logonn">
               </div>
                 <div>
                    <p  class="col-12 offset-4 a">Universite <br></p> 
@@ -37,15 +37,21 @@ BIENVENU SUR LE SITE DE UFR SDS DE L'UNIVERSITE JOSEPH KI-ZERBO
     <hr class="hbr">
     <div class="container-fluid">
         <div class="row">
-
+            <style>
+                a{
+color: black;
+text-decoration: none;
+                }
+            </style>
             <section class=" hbr2">
                 <div class="go col-3">
         <h3 class="mn">MENU</h3>
        
-        <button class="button "><span id="btn">Ajouter un Administrateur </span></button>
-        <button class="button"><span id="btn">Ajouter un Tutteur </span></button>
-        <button class="button"><span id="btn">Ajouter un Etudiant </span></button>
-        <button class="button"><span id="btn">Consulter la Liste </span></button>
+       
+        <button class="button "><span id="btn"><a href="inscription adm.php">Ajouter un Administrateur </a></span></button>
+        <button class="button"><span id="btn"> <a href="inscri tutteur.php">Ajouter un Tutteur</a></span></button>
+        <button class="button"><span id="btn"> <a href="inscrip etudian.php">Ajouter un Etudiant</a></span></button>
+        <button class="button"><span id="btn"> <a href="liste ufr.php">Consulter la Liste</a></span></button>
         
                 </div>
                 <div class="col-7 crl go2">
@@ -82,7 +88,7 @@ BIENVENU SUR LE SITE DE UFR SDS DE L'UNIVERSITE JOSEPH KI-ZERBO
             <div class="row">
                 <footer class="foot">
                     <div>
-                        <img src="../images/logo/kizerbo_logo-removebg-preview.png"" class="col-12 offset-2 logo">
+                        <img src="../images/logo/kizerbo_logo-removebg-preview.png"" class="col-12 offset-2 logonn">
                      </div>
                      <div>
                         <img src="../images/logo/4566a087e3b30da9024d888934a7eb36-removebg-preview.png" alt="" class="col-12 offset-10 acx">

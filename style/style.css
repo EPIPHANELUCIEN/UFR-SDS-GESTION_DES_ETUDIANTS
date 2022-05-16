@@ -30,7 +30,7 @@
     border-radius: 20% 20% / 20% 20%;
     display: flex;
 }
-.logo{
+.logonn{
     height: 150px;
     width: 150px;
     /* margin-left: 80px;*/
@@ -162,6 +162,7 @@ border: 2px black;
 /* carousell */
 /* foot */
 .foot{
+   
     background-color: rgba(44, 193, 234, 0.463);
     display: flex;
 
