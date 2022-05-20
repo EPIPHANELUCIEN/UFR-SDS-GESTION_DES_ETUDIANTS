@@ -205,6 +205,10 @@
             margin-top: 10%;
 
         }
+        .boob a{
+             color: red;
+                text-decoration: none;
+            }
         </style>
         <!-- css -->
 <!-- php -->
@@ -212,46 +216,51 @@
 
 <?php
 require('0config.php');
-if (isset($_REQUEST['nom'], $_REQUEST['prenom'], $_REQUEST['date'], $_REQUEST['telephone'], $_REQUEST['email'])){
-  // récupérer le nom d'utilisateur et supprimer les antislashes ajoutés par le formulaire
-  $nom = stripslashes($_REQUEST['nom']);
-  $nom = mysqli_real_escape_string($conn, $nom); 
-  // récupérer l'email et supprimer les antislashes ajoutés par le formulaire
-  $prenom = stripslashes($_REQUEST['prenom']);
-  $prenom = mysqli_real_escape_string($conn, $prenom);
-  // récupérer le mot de passe et supprimer les antislashes ajoutés par le formulaire
-  $date = stripslashes($_REQUEST['date']);
-  $date = mysqli_real_escape_string($conn, $date);
-  // récupérer le mot de passe et supprimer les antislashes ajoutés par le formulaire
-  $telephone = stripslashes($_REQUEST['telephone']);
-  $telephone = mysqli_real_escape_string($conn, $telephone);
-  // récupérer le mot de passe et supprimer les antislashes ajoutés par le formulaire
-  $email = stripslashes($_REQUEST['email']);
-  $email = mysqli_real_escape_string($conn, $email);
-  // récupérer le mot de passe et supprimer les antislashes ajoutés par le formulaire
-  $nom_t = stripslashes($_REQUEST['tutor']);
-  $nom_t= mysqli_real_escape_string($conn, $nom_t); 
- 
-  //requéte SQL + mot de passe crypté
-    $query = "INSERT into `etudiant` (nom, prenom,date_de_naissance, telephone, email,tuteur)
-              VALUES ('$nom', '$prenom', '$date', '$telephone', '$email','$nom_t')";
-  // Exécuter la requête sur la base de données
-    $res = mysqli_query($conn, $query);
-    if($res){
-       echo "<div class='sucess'>
-             <h3>Vous avez inscrit un etudiant avec succès.</h3>
-             <p>Cliquez ici pour voir la liste <a href='liste ufr.php'>connecter</a></p>
-       </div>";
-       echo  " <script> alert('Inscription reussit avec succes'); </script> ";
-    }
-}else{}
+if(isset($_POST['inscriro'])) { 
+
+    if (isset($_REQUEST['nom'], $_REQUEST['prenom'], $_REQUEST['date'], $_REQUEST['telephone'], $_REQUEST['email'])){
+        // récupérer le nom d'utilisateur et supprimer les antislashes ajoutés par le formulaire
+        $nom = stripslashes($_REQUEST['nom']);
+        $nom = mysqli_real_escape_string($conn, $nom); 
+        // récupérer l'email et supprimer les antislashes ajoutés par le formulaire
+        $prenom = stripslashes($_REQUEST['prenom']);
+        $prenom = mysqli_real_escape_string($conn, $prenom);
+        // récupérer le mot de passe et supprimer les antislashes ajoutés par le formulaire
+        $date = stripslashes($_REQUEST['date']);
+        $date = mysqli_real_escape_string($conn, $date);
+        // récupérer le mot de passe et supprimer les antislashes ajoutés par le formulaire
+        $telephone = stripslashes($_REQUEST['telephone']);
+        $telephone = mysqli_real_escape_string($conn, $telephone);
+        // récupérer le mot de passe et supprimer les antislashes ajoutés par le formulaire
+        $email = stripslashes($_REQUEST['email']);
+        $email = mysqli_real_escape_string($conn, $email);
+        // récupérer le mot de passe et supprimer les antislashes ajoutés par le formulaire
+        $nom_t = stripslashes($_REQUEST['tutor']);
+        $nom_t= mysqli_real_escape_string($conn, $nom_t); 
+       
+        //requéte SQL + mot de passe crypté
+          $query = "INSERT into `etudiant` (nom, prenom,date_de_naissance, telephone, email,tuteur)
+                    VALUES ('$nom', '$prenom', '$date', '$telephone', '$email','$nom_t')";
+        // Exécuter la requête sur la base de données
+          $res = mysqli_query($conn, $query);
+          if($res){
+             echo "<div class='sucess'>
+                   <h3>Vous avez inscrit un etudiant avec succès.</h3>
+                   <p>Cliquez ici pour voir la liste <a href='liste ufr.php'>Liste</a></p>
+             </div>";
+             echo  " <script> alert('Inscription reussit avec succes'); </script> ";
+          }
+      }else{}
+}
+else{} 
+
 ?>
 <!-- php -->
 <!-- php -->
 <?php
  echo "<div class='boob'>
- <h3 >pour voir la liste cliquer ici <a href='liste ufr.php'>connecter</a></h3>
- <h3 >pour la page d'aceuille cliquer ici <a href='accueil.php'>connecter</a></h3>
+ <h3 >pour voir la liste cliquer ici <a href='liste ufr.php'>Liste</a></h3>
+ <h3 >pour la page d'aceuille cliquer ici <a href='accueil.php'>Acceuille</a></h3>
 
 </div>";
 ?>
@@ -284,7 +293,7 @@ if (isset($_REQUEST['nom'], $_REQUEST['prenom'], $_REQUEST['date'], $_REQUEST['t
                     <select id="country" name="tutor" type="select">
                         <?php
                         while ($row=mysqli_fetch_assoc ($result_tutors)){
-                            echo "<option>$row[nom]</option>";
+                            echo "<option value='$row[id]'>$row[nom]_$row[prenom]</option>";
                         }
                         ?>
                         
@@ -294,7 +303,7 @@ if (isset($_REQUEST['nom'], $_REQUEST['prenom'], $_REQUEST['date'], $_REQUEST['t
                     <button class="tutu1"><a href="inscri tutteur.php"> Ajouter </a></button>
 
                 </div>
-                <input type="submit" value="inscrire">
+                <input type="submit" value="inscrire" name="inscriro">
             </form>
     </body>
 

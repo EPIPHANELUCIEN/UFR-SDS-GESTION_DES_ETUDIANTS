@@ -127,7 +127,11 @@
                 background-image: url(../images/p4/images\ \(2\).png);
             }
             .boob{
+                color: yellow !important;
+            }
+            .boob a{
                 color: aqua;
+                text-decoration: none;
             }
         </style>
         <!-- css -->
@@ -160,7 +164,13 @@ if (isset($_REQUEST['nom'], $_REQUEST['prenom'], $_REQUEST['telephone'])){
     }
 }else{}
 ?>
+ echo "<div class='boob'>
+ <h4 >pour la page d'aceuille cliquer ici <a href='accueil.php'>acceuille</a></h4>
+ <h4 >pour ajouter un etudiant cliquer ici <a href='inscrip etudian.php'>+etudiant</a></h4>
+ 
 
+</div>";
+?>
         <form action="" class="abcx" method="post">
             <div class="profile"></div>
             <h3>Inscription Tutteur</h3>

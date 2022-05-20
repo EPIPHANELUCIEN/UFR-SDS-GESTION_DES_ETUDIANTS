@@ -178,9 +178,9 @@ if ($result){
     while ($data= mysqli_fetch_assoc($result)){
 
 
-        // $query= "SELECT nom,prenom FROM tutu where nom = $data[tuteur]";
-        // $resulto = mysqli_query ($conn,$query);
-
+        $query= "SELECT nom,prenom FROM tutu where id = $data[tuteur]";
+        $resulto = mysqli_query ($conn,$query);
+        $data_t= mysqli_fetch_assoc($resulto);
 
      echo ' 
        <tr>
@@ -189,7 +189,7 @@ if ($result){
        <td>'.$data["prenom"].'</td>  
        <td>'.$data["email"].'</td>
        <td>'.$data["telephone"].'</td>
-       <td>'.$data["tuteur"].'</td>
+       <td>'.$data_t["nom"].'_'.$data_t["prenom"].'</td>
        <td><a href=""><i class="fa fa-pencil"></i></a></td>
        <td id="boy"><i class="fa fa-times-circle"><a href=""></a></i></td>                    
        </tr>

@@ -21,23 +21,27 @@
 <?php
 require('0config.php');
 session_start();
-if (isset($_POST['envoyer'])){
-  $email = stripslashes($_REQUEST['email']);
-  $email = mysqli_real_escape_string($conn, $email);
-  $psw = stripslashes($_REQUEST['psw']);
-  $psw = mysqli_real_escape_string($conn, $psw);
-    $query = "SELECT * FROM `administrateur` WHERE email='$email' and mot_de_passe='".hash('sha256', $psw)."'";
-  $result = mysqli_query($conn,$query) or die(mysql_error());
-  $rows = mysqli_num_rows($result);
-  if($rows==1){
-      $_SESSION['email'] = $email;
-      header("Location: accueil.php?exist=1");
-  }else{
-    $message = "Le nom d'utilisateur ou le mot de passe est incorrect.";
-    echo $message;
-    
-  }
-}
+if (isset($_POST['envoyer']){
+
+    if (isset($_POST['envoyer'])){
+        $email = stripslashes($_REQUEST['email']);
+        $email = mysqli_real_escape_string($conn, $email);
+        $psw = stripslashes($_REQUEST['psw']);
+        $psw = mysqli_real_escape_string($conn, $psw);
+          $query = "SELECT * FROM `administrateur` WHERE email='$email' and mot_de_passe='".hash('sha256', $psw)."'";
+        $result = mysqli_query($conn,$query) or die(mysql_error());
+        $rows = mysqli_num_rows($result);
+        if($rows==1){
+            $_SESSION['email'] = $email;
+            header("Location: accueil.php?exist=1");
+        }else{
+          $message = "Le nom d'utilisateur ou le mot de passe est incorrect.";
+          echo $message;
+          
+        }
+      }
+}else{}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
