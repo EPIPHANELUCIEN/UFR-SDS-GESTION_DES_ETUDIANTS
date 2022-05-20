@@ -8,6 +8,28 @@
     <link rel="stylesheet" href="../style/bootstrap.min.css">
     <title>Accueille</title>
 </head>
+
+<!-- php -->
+<!-- php -->
+<?php
+  // Initialiser la session
+  session_start();
+  // Vérifiez si l'utilisateur est connecté, sinon redirigez-le vers la page de connexion
+  if(!isset($_SESSION["email"])){
+    header("Location: autentif_adm.php");
+    exit(); 
+  }
+
+  if (isset($_GET['exist'])) {
+    $connection = "connexion reussie ";
+  }
+?>
+<!-- php -->
+<!-- php -->
+
+
+
+  <p style="text-align='center'" > <?php  echo " <script> alert('connexion reussie'); </script> ";?> </p>
 <body>
     <div class="container-fluid">
         <div class="row">

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/bootstrap.min.css">
-    <title>Inscr Tutteur</title>
+    <title>Inscr Etudiant</title>
 </head>
 
 <body>
@@ -37,7 +37,7 @@
 
     </header>
     <div class="htext pi">
-        Veuillez remplir le formulaire ci-dessous pour inscrir un Tutteur
+        Veuillez remplir le formulaire ci-dessous pour inscrir un Etudiant
     </div>
 
     <body>
@@ -52,16 +52,16 @@
             }
 
             body {
-                background-image: url(../images/p4/pexels-pixabay-235985.jpg);
+                background-image: url(../images/p5/pexels-henry-&-co-1939485.jpg);
             }
 
             .pi {
-          
+
                 font-family: "epi1";
                 font-size: 35px;
                 margin: 0% 2% 0% 2%;
                 margin-top: 20px;
-                color: white;
+                color: black;
             }
 
             input[type=text],
@@ -76,6 +76,36 @@
                 margin-bottom: 16px;
                 resize: vertical;
             }
+            input[type=date],
+            select,
+            textarea {
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+                margin-top: 6px;
+                margin-bottom: 16px;
+                resize: vertical;
+            }
+
+
+
+
+            select[type=text],
+            select,
+            textarea {
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+                margin-top: 6px;
+                margin-bottom: 16px;
+                resize: vertical;
+            }
+
+
 
             input[type=password],
             select,
@@ -89,7 +119,32 @@
                 margin-bottom: 16px;
                 resize: vertical;
             }
-
+            #tutu{
+                width: 85% !important;
+                padding: 12px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+                margin-top: 6px;
+                margin-bottom: 16px;
+                resize: vertical;
+            }
+.tutu1{
+    width: 20% !important;
+    margin-left: 5%;
+    border: 1px solid #ccc;
+    margin-top: 6px;
+                margin-bottom: 16px;
+                border-radius: 30px;
+}
+.tutu1 :hover{
+    width: 20% !important;
+    margin-left: 5%;
+    border: 1px solid rgba(54, 13, 235, 0.771);
+    margin-top: 6px;
+                margin-bottom: 16px;
+                border-radius: 30px;
+}
             input[type=submit] {
                 background-color: #0f55eb;
                 color: white;
@@ -118,22 +173,46 @@
             }
 
             .profile {
-                height: 200px;
-                width: 30%;
+                height: 175px;
+                width: 40%;
                 border: solid 3px white;
-                margin: 0% 35% 0% 35%;
-
+                margin: 0% 5% 0% 5%;
                 background-color: #f2f2f2;
-                background-image: url(../images/p4/images\ \(2\).png);
+                background-image: url(../images/p5/pexels-henry-&-co-1939485.jpg);
             }
-            .boob{
-                color: aqua;
+
+            .etdfor {
+                display: flex;
             }
+            .etdfor input{
+                width: 75%;
+            }
+            .yo {
+            display: flex;
+        }
+        #img {
+            height: 100px;
+            width: 15%;
+            margin-left: 10%;
+            margin-top: 10%;
+
+        }
+
+        #img2 {
+            height: 100px;
+            width: 15%;
+            margin-right: 10%;
+            margin-top: 10%;
+
+        }
         </style>
         <!-- css -->
-        <?php
+<!-- php -->
+<!-- php -->
+
+<?php
 require('0config.php');
-if (isset($_REQUEST['nom'], $_REQUEST['prenom'], $_REQUEST['telephone'])){
+if (isset($_REQUEST['nom'], $_REQUEST['prenom'], $_REQUEST['date'], $_REQUEST['telephone'], $_REQUEST['email'])){
   // récupérer le nom d'utilisateur et supprimer les antislashes ajoutés par le formulaire
   $nom = stripslashes($_REQUEST['nom']);
   $nom = mysqli_real_escape_string($conn, $nom); 
@@ -141,41 +220,85 @@ if (isset($_REQUEST['nom'], $_REQUEST['prenom'], $_REQUEST['telephone'])){
   $prenom = stripslashes($_REQUEST['prenom']);
   $prenom = mysqli_real_escape_string($conn, $prenom);
   // récupérer le mot de passe et supprimer les antislashes ajoutés par le formulaire
+  $date = stripslashes($_REQUEST['date']);
+  $date = mysqli_real_escape_string($conn, $date);
+  // récupérer le mot de passe et supprimer les antislashes ajoutés par le formulaire
   $telephone = stripslashes($_REQUEST['telephone']);
   $telephone = mysqli_real_escape_string($conn, $telephone);
   // récupérer le mot de passe et supprimer les antislashes ajoutés par le formulaire
-  
-    $query = "INSERT into `tutu` (nom, prenom, telephone)
-              VALUES ('$nom', '$prenom', '$telephone')";
+  $email = stripslashes($_REQUEST['email']);
+  $email = mysqli_real_escape_string($conn, $email);
+  // récupérer le mot de passe et supprimer les antislashes ajoutés par le formulaire
+  $nom_t = stripslashes($_REQUEST['tutor']);
+  $nom_t= mysqli_real_escape_string($conn, $nom_t); 
+ 
+  //requéte SQL + mot de passe crypté
+    $query = "INSERT into `etudiant` (nom, prenom,date_de_naissance, telephone, email,tuteur)
+              VALUES ('$nom', '$prenom', '$date', '$telephone', '$email','$nom_t')";
   // Exécuter la requête sur la base de données
     $res = mysqli_query($conn, $query);
     if($res){
-       echo "<div class='boob'>
-             <h3 >Vous avez inscrit un tuteur avec succès.</h3>
-             <h3 >pour voir la liste cliquer ici <a href='liste ufr.php'>connecter</a></h3>
-             <h3 >pour inscrir un etudiant cliquer ici <a href='inscrip etudian.php'>connecter</a></h3>
-           
+       echo "<div class='sucess'>
+             <h3>Vous avez inscrit un etudiant avec succès.</h3>
+             <p>Cliquez ici pour voir la liste <a href='liste ufr.php'>connecter</a></p>
        </div>";
        echo  " <script> alert('Inscription reussit avec succes'); </script> ";
     }
 }else{}
 ?>
+<!-- php -->
+<!-- php -->
+<?php
+ echo "<div class='boob'>
+ <h3 >pour voir la liste cliquer ici <a href='liste ufr.php'>connecter</a></h3>
+ <h3 >pour la page d'aceuille cliquer ici <a href='accueil.php'>connecter</a></h3>
+
+</div>";
+?>
 
         <form action="" class="abcx" method="post">
-            <div class="profile"></div>
-            <h3>Inscription Tutteur</h3>
-            <form action="/action_page.php">
-                <label for="fname">Nom</label>
-                <input type="text" id="fname" name="nom" placeholder="entrez nom..." value="Mr " required>
+            <div class="yo">
+                <img src="../images/p2/kizerbo_logo-removebg-preview.png" alt="" id="img">
+                <img src="../images/p5/10210manstudentmediumdarkskintone_110635.jpg" alt="" class="profile">
+                <img src="../images/p2/4566a087e3b30da9024d888934a7eb36-removebg-preview.png" alt="" id="img2">
+            </div>
 
-                <label for="lname">Prenom</label>
+            <h3>Inscription Etudiant</h3>
+         
+               <label for="lname">Nom etudiant</label>
+                <input type="text" id="lname" name="nom" placeholder="entrez nom..." required>
+                <label for="lname">Prenom etudiant</label>
                 <input type="text" id="lname" name="prenom" placeholder="entrez prenom..." required>
-                <label for="lname">Numero tutteur</label>
-                <input type="text" id="lname" name="telephone" placeholder="entrez numero..." required>
+                <label for="date">Date de naissance etudiant</label>
+                <input type="date" id="lname" name="date" placeholder="Date..." required>
+                <label for="lname">Numero etudiant</label>
+                <input type="text" id="lname" name="telephone" placeholder="numero..." required>
+                <label for="lname">Email de l'etudiant</label>
+                <input type="text" id="lname" name="email" placeholder="entrez email..." required>
+                <label for="lname">Tutteur responsable </label>
+                <div class="etdfor">
+                    <?php
+                    $query_tutors = "SELECT * FROM tutu";
+                    $result_tutors =mysqli_query ($conn, $query_tutors)
+                    ?>
+                    <select id="country" name="tutor" type="select">
+                        <?php
+                        while ($row=mysqli_fetch_assoc ($result_tutors)){
+                            echo "<option>$row[nom]</option>";
+                        }
+                        ?>
+                        
+                      
+                      </select>
+                   
+                    <button class="tutu1"><a href="inscri tutteur.php"> Ajouter </a></button>
 
+                </div>
                 <input type="submit" value="inscrire">
             </form>
     </body>
+
+
 
 
     <footer>

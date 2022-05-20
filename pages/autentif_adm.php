@@ -1,3 +1,44 @@
+<?php
+// require('0config.php');
+
+// if (isset($_POST['envoyer'])){
+//   $email = $_POST['email'];
+//   $psw =  $_POST['psw'];
+//     $query = "SELECT * FROM `administrateur` WHERE email='$email' and mot_de_passe='".hash('sha256', $psw)."'";
+//   $result = mysqli_query($conn,$query) or die(mysql_error());
+//   $rows = mysqli_num_rows($result);
+//   if($rows==1){
+//       $_SESSION['email'] = $email;
+//       header("Location: accueil.php");
+//   }else{
+//     $message = "Le nom d'utilisateur ou le mot de passe est incorrect.";
+//     echo $message;
+//     echo (hash('sha256', $psw));
+//   }
+// }
+// echo $rows;
+?>
+<?php
+require('0config.php');
+session_start();
+if (isset($_POST['envoyer'])){
+  $email = stripslashes($_REQUEST['email']);
+  $email = mysqli_real_escape_string($conn, $email);
+  $psw = stripslashes($_REQUEST['psw']);
+  $psw = mysqli_real_escape_string($conn, $psw);
+    $query = "SELECT * FROM `administrateur` WHERE email='$email' and mot_de_passe='".hash('sha256', $psw)."'";
+  $result = mysqli_query($conn,$query) or die(mysql_error());
+  $rows = mysqli_num_rows($result);
+  if($rows==1){
+      $_SESSION['email'] = $email;
+      header("Location: accueil.php?exist=1");
+  }else{
+    $message = "Le nom d'utilisateur ou le mot de passe est incorrect.";
+    echo $message;
+    
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +80,9 @@
                 </div>
             </center>
             <hr class="hbr">
-        
+        <p class="message">
+    
+        </p>
         <body>
 
 
@@ -113,53 +156,34 @@
                     background-color: #f2f2f2;
                     background-image: url(../images/p1/administrateur-système1.jpg);
                 }
-                /* backgroun animation */
-                /* backgroun animation */
-                
-                /* backgroun animation */
-                /* backgroun animation */
-                
+               
+                .message{
+                  text-align : center;
+                  font-family : cooper;
+                  color : red;
+                }
                 </style>
-                <!-- php -->
-<!-- php -->
-<?php
-require('0config.php');
-session_start();
-if (isset($_POST['username'])){
-  $email = stripslashes($_REQUEST['email']);
-  $email = mysqli_real_escape_string($conn, $email);
-  $psw = stripslashes($_REQUEST['psw']);
-  $psw = mysqli_real_escape_string($conn, $psw);
-    $query = "SELECT * FROM `administrateur` WHERE email='$email' and password='".hash('sha256', $psw)."'";
-  $result = mysqli_query($conn,$query) or die(mysql_error());
-  $rows = mysqli_num_rows($result);
-  if($rows==1){
-      $_SESSION['email'] = $email;
-      header("Location: accueil.php");
-  }else{
-    $message = "Le nom d'utilisateur ou le mot de passe est incorrect.";
-  }
-}
-?>
-<!-- php -->
-<!-- php -->
-            <!-- css -->
+
+<!-- css -->
             <form  class="abcx box" action="" method="post" name="login">
 <div class="profile"></div>
     <h3>Connextion administrateur</h3>
-  <form action="/action_page.php" method="post">
     <label for="fname">Email</label>
-    <input type="text" id="fname" name="nom" placeholder="entrez votre email.." required>
+    <input type="text" id="fname" name="email" placeholder="entrez votre email.." required>
 
     <label for="lname">Mot de passe</label>
     <input type="password" id="lname" name="psw" placeholder="entrez votre mot de passe" required>
 
-    <input type="submit" namz="envoyer" value="Confirmer">
+    <input type="submit" name="envoyer" value="Confirmer">
             </form>
         </body>
 
 
+<!-- php -->
+<!-- php -->
 
+<!-- php -->
+<!-- php -->
 
 
 
